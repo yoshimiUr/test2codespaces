@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   変数の設定（世界のトレンド：カラーや共通余白の管理）
+   ========================================================================== */
+:root {
+  /* カラーパレット */
+  --color-bg: #f9f8f6;       /* オフホワイト */
+  --color-primary: #1a3322;  /* 深緑 */
+  --color-text: #2c332e;     /* 少し緑を含んだダークグレー（文字が強くなりすぎないように） */
+  --color-accent: #a3906b;   /* 落ち着いたゴールド・ベージュ（アクセント用） */
+  
+  /* フォント */
+  --font-family: 'Noto Sans JP', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+  
+  /* 余白・レイアウト（モダンなゆったりとしたマージン） */
+  --space-xl: 160px;
+  --space-l: 100px;
+  --space-m: 60px;
+}
+
+/* ==========================================================================
+   ベース・リセット
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* スムーズスクロール */
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-weight: 300; /* 細めのウエイトを指定 */
+  line-height: 1.8;
+  letter-spacing: 0.08em; /* 文字間を少し広げて上品に */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  /* 画像未挿入時のグレープレースホルダー（ダミー用の背景） */
+  background-color: #e6e4df; 
+}
+
+/* 共通コンテナ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.container-narrow {
+  max-width: 800px;
+}
+
+/* セクション共通見出し */
+.sub-title {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-primary);
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* ==========================================================================
+   ヘッダー
+   ========================================================================== */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+  z-index: 100;
+}
+
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  letter-spacing: 0.15em;
+}
+
+.header-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.header-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   HERO セクション
+   ========================================================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  overflow: hidden;
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%; /* 画面の右側75%に配置するモダンなレイアウト */
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(249, 248, 246, 0.9); /* オフホワイトを透過させて重ねる */
+  padding: 60px 80px 60px 0;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-primary);
+  letter-spacing: 0.15em;
+}
+
+/* ==========================================================================
+   導入文 セクション
+   ========================================================================== */
+.about {
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+
+.about-lead {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.about-text {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   自由配置画像（ギャラリー） セクション
+   ========================================================================== */
+.gallery {
+  padding-bottom: var(--space-xl);
+}
+
+.gallery .sub-title {
+  text-align: center;
+  margin-bottom: var(--space-m);
+}
+
+/* CSS Gridを使用したトレンドのモザイク・アシンメトリー配置 */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* ホバー時に上品に拡大するアニメーション */
+.gallery-item {
+  overflow: hidden;
+}
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.item-large {
+  grid-column: 1 / 8;
+  height: 450px;
+}
+
+.item-vertical {
+  grid-column: 8 / 13;
+  grid-row: 1 / 3;
+  height: 650px;
+}
+
+.item-small {
+  grid-column: 2 / 7;
+  height: 300px;
+  margin-top: -100px; /* あえて少し重ねることで、余白と立体感を演出 */
+}
+
+/* ==========================================================================
+   分割レイアウト共通（温泉・ご飯・施設）
+   ========================================================================== */
+.split-layout {
+  display: flex;
+  align-items: center;
+  gap: 10%;
+  padding: var(--space-l) 0;
+}
+
+.split-info {
+  flex: 1;
+}
+
+.split-image {
+  flex: 1.2;
+  height: 500px;
+  overflow: hidden;
+}
+
+.split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split-text {
+  font-size: 0.95rem;
+}
+
+/* 交互に左右反転させる（ご飯紹介セクション用） */
+.split-layout.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ==========================================================================
+   フッター
+   ========================================================================== */
+.footer {
+  background-color: var(--color-primary); /* フッターは深緑を全面に敷いて引き締める */
+  color: var(--color-bg); /* 文字はオフホワイト */
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+
+.footer-address {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   レスポンシブ（スマートフォン対応）
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 80px;
+    --space-l: 60px;
+  }
+  
+  .header {
+    padding: 20px;
+  }
+  .header-nav {
+    display: none; /* スマホ時はハンバーガーメニュー等にするのが一般的ですが、今回はシンプル化のため非表示 */
+  }
+
+  .hero {
+    height: 70vh;
+    padding: 0 20px;
+  }
+  .hero-image-wrapper {
+    width: 100%;
+  }
+  .hero-text {
+    padding: 30px;
+    width: 100%;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* ギャラリーをスマホ用の一列に */
+  .gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .gallery-item, .item-large, .item-vertical, .item-small {
+    height: 250px;
+    margin-top: 0;
+  }
+
+  /* 分割レイアウトを縦並びに */
+  .split-layout, .split-layout.reverse {
+    flex-direction: column;
+    gap: 30px;
+    padding: var(--space-l) 0;
+  }
+  .split-image {
+    width: 100%;
+    height: 300px;
+  }
+}
